@@ -420,6 +420,75 @@
             alert('ধন্যবাদ! আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে।');
             closeModal();
         });
+
+        <script>
+    // ⚠️ আপনার Google Apps Script URL-টি নিচে উদ্ধৃতি চিহ্নের (" ") ভেতরে বসান
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyb0TtaKWZUmEkotB4aI1XRAMO1ZtIpxr1HTZOvbWV5YOxU67kxohTrKbDg4cQDFkcvQg/exec';
+    
+    const productPrice = 2990;
+    let selectedCourier = 70;
+
+    // ছবির কালার পরিবর্তন
+    function changeColor(imageSrc, element) {
+        document.getElementById('main-watch').src = imageSrc;
+        const buttons = document.querySelectorAll('.color-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        element.classList.add('active');
+    }
+
+    // পপ-আপ ফর্ম খোলা ও বন্ধ করা
+    function openModal() {
+        document.getElementById('orderModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('orderModal').style.display = 'none';
+    }
+
+    // কুরিয়ার চার্জ ও মোট দাম হিসেব
+    function calculateTotal(shippingCharge) {
+        selectedCourier = shippingCharge;
+        document.getElementById('charge-text').innerText = shippingCharge;
+        document.getElementById('total-price').innerText = productPrice + shippingCharge;
+    }
+
+    // Google Sheet-এ ডাটা পাঠানোর হ্যান্ডলার
+    const form = document.getElementById('checkoutForm');
+    const submitBtn = form.querySelector('.submit-btn');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'প্রসেসিং হচ্ছে...';
+
+        const totalPrice = productPrice + parseInt(selectedCourier);
+        const courierText = selectedCourier === 70 ? 'Inside City (৳70)' : 'Outside City (৳130)';
+
+        const formData = new FormData();
+        formData.append('name', document.getElementById('name').value);
+        formData.append('phone', document.getElementById('phone').value);
+        formData.append('address', document.getElementById('address').value);
+        formData.append('courier', courierText);
+        formData.append('total', totalPrice + ' Taka');
+
+        fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => {
+                alert('ধন্যবাদ! আপনার অর্ডারটি সফলভাবে নেওয়া হয়েছে।');
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'অর্ডার কনফার্ম করুন';
+                form.reset();
+                calculateTotal(70); // Reset to default
+                closeModal();
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('দুঃখিত! কোনো সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'অর্ডার কনফার্ম করুন';
+            });
+    });
+</script>
     </script>
 </body>
 </html>
