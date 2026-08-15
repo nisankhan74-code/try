@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রিমিয়াম ওয়াচ - অর্ডার করুন</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        .product-card {
+            background: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            background: #fdfdfd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: 0.3s ease;
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px 30px;
+        }
+
+        .product-details h1 {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #e63946;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .color-selection {
+            margin-bottom: 20px;
+        }
+
+        .colors {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+
+        .color-btn.active, .color-btn:hover {
+            border-color: #000;
+            background: #000;
+            color: #fff;
+        }
+
+        .description {
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .order-btn {
+            width: 100%;
+            padding: 15px;
+            background: #e63946;
+            color: #fff;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .order-btn:hover {
+            background: #d62828;
+        }
+
+        /* Modal / Form Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .courier-options label {
+            display: block;
+            font-weight: normal;
+            margin-top: 5px;
+        }
+
+        .total-summary {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2b9348;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #55a630;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <!-- প্রোডাক্ট সেকশন -->
+        <div class="product-card">
+            <div class="product-image">
+                <!-- মূল ছবি (ডিফল্ট কালার) -->
+                <img id="main-watch" src="images/watch-black.png" alt="প্রিমিয়াম ওয়াচ">
+            </div>
+
+            <div class="product-details">
+                <h1>লুক্সে প্রিমিয়াম ওয়াচ</h1>
+                <div class="price">৳ ২,৯৯০</div>
+
+                <!-- কালার সিলেকশন -->
+                <div class="color-selection">
+                    <p><strong>কালার সিলেক্ট করুন:</strong></p>
+                    <div class="colors">
+                        <button class="color-btn active" onclick="changeColor('images/watch-black.png', this)">ব্ল্যাক</button>
+                        <button class="color-btn" onclick="changeColor('images/watch-silver.png', this)">সিলভার</button>
+                        <button class="color-btn" onclick="changeColor('images/watch-gold.png', this)">গোল্ড</button>
+                        <button class="color-btn" onclick="changeColor('images/watch-brown.png', this)">ব্রাউন</button>
+                    </div>
+                </div>
+
+                <!-- শর্ট ডেসক্রিপশন -->
+                <p class="description">
+                    উন্নত মানের স্টেইনলেস স্টিল ও ওয়াটারপ্রুফ বডির প্রিমিয়াম ওয়াচ। ১০০% অরিজিনাল কোয়ালিটি এবং আকর্ষণীয় ফিনিশিং যা আপনার লুকে এনে দেবে রাজকীয় অনুভূতি।
+                </p>
+
+                <!-- অর্ডার বাটন -->
+                <button class="order-btn" onclick="openModal()">ORDER NOW</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- অর্ডার ফর্ম পপ-আপ (Modal) -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>অর্ডার কনফার্ম করুন</h2>
+            
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="name">আপনার নাম *</label>
+                    <input type="text" id="name" required placeholder="পুরো নাম লিখুন">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">মোবাইল নম্বর *</label>
+                    <input type="tel" id="phone" required placeholder="১১ ডিজিটের নম্বর দিন">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">সম্পূর্ণ ঠিকানা *</label>
+                    <textarea id="address" required placeholder="বাসা/রোড নম্বর, এলাকা ও জেলার নাম"></textarea>
+                </div>
+
+                <!-- কুরিয়ার চার্জ সিলেকশন -->
+                <div class="form-group">
+                    <label>কুরিয়ার চার্জ সিলেক্ট করুন *</label>
+                    <div class="courier-options">
+                        <label>
+                            <input type="radio" name="courier" value="70" checked onclick="calculateTotal(70)">
+                            ঢাকার ভিতরে (৳ ৭০)
+                        </label>
+                        <label>
+                            <input type="radio" name="courier" value="130" onclick="calculateTotal(130)">
+                            ঢাকার বাইরে (৳ ১৩০)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- টোটাল হিসেব -->
+                <div class="total-summary">
+                    <p>প্রোডাক্ট দাম: <span>৳ ২,৯৯০</span></p>
+                    <p>কুরিয়ার চার্জ: <span>৳ <span id="charge-text">৭০</span></span></p>
+                    <hr>
+                    <h3>মোট সর্বমোট: ৳ <span id="total-price">৩০৬০</span></h3>
+                </div>
+
+                <button type="submit" class="submit-btn">অর্ডার সাবমিট করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const productPrice = 2990;
+
+        // ছবির কালার পরিবর্তন
+        function changeColor(imageSrc, element) {
+            document.getElementById('main-watch').src = imageSrc;
+            
+            // এক্টিভ বাটন হাইলাইট
+            const buttons = document.querySelectorAll('.color-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // পপ-আপ ফর্ম খোলা ও বন্ধ করা
+        function openModal() {
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        // কুরিয়ার চার্জ ও মোট দাম হিসেব
+        function calculateTotal(shippingCharge) {
+            document.getElementById('charge-text').innerText = shippingCharge;
+            document.getElementById('total-price').innerText = productPrice + shippingCharge;
+        }
+
+        // ফর্ম সাবমিশন
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('ধন্যবাদ! আপনার অর্ডারটি সফলভাবে নেওয়া হয়েছে।');
+            closeModal();
+        });
+    </script>
+</body>
+</html>
