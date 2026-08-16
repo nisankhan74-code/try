@@ -317,14 +317,16 @@
     <!-- Header Section -->
     <header>
         <div class="logo">
-            <img src="https://scontent.fdac199-1.fna.fbcdn.net/v/t39.30808-6/768615292_2456567508161043_3408385981254784546_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Ah-F-bHUhZgQ7kNvwGr9a92&_nc_oc=AdpJ5eX_2rH1-x1KztVQIYHYMGZwZwDiZx2DsP_B2dx9UxWLGKpvhhtL5NQyytQaK54&_nc_zt=23&_nc_ht=scontent.fdac199-1.fna&_nc_gid=wibTDZ1sub-i5qTA8HMJVg&_nc_ss=7b2a8&oh=00_AQHRL1DJCtKW8BwAmdbBvfaPkB6QlgY31Cvm8nFJIw9I6g&oe=6A872E0F" id="site-logo" alt="Logo">
+            <!-- Web Logo Image Updated -->
+            <img src="images/weblogo.jpg" id="site-logo" alt="Logo">
         </div>
     </header>
 
     <!-- Main Featured Product Section -->
     <section class="hero">
         <div class="hero-image">
-            <img src="images/watch-black.png" id="watch-black.png" alt="Luxury Watch">
+            <!-- Main Product Image (Defaulting to Black1) -->
+            <img src="images/Black1.jpg" id="main-product-img" alt="Luxury Watch">
         </div>
         <div class="hero-details">
             <h1>প্রিমিয়াম ক্লাসিক ওয়াচ</h1>
@@ -333,9 +335,9 @@
             <div class="color-selection">
                 <p>কালার সিলেক্ট করুন:</p>
                 <div class="color-options">
-                    <button class="color-btn active" onclick="selectColor(this, 'কালো')">কালো</button>
-                    <button class="color-btn" onclick="selectColor(this, 'সিলভার')">সিলভার</button>
-                    <button class="color-btn" onclick="selectColor(this, 'গোল্ডেন')">গোল্ডেন</button>
+                    <button class="color-btn active" onclick="selectColor(this, 'কালো', 'images/Black1.jpg')">কালো</button>
+                    <button class="color-btn" onclick="selectColor(this, 'সিলভার', 'images/Silver1.jpg')">সিলভার</button>
+                    <button class="color-btn" onclick="selectColor(this, 'গোল্ডেন', 'images/Golden1.jpg')">গোল্ডেন</button>
                 </div>
             </div>
 
@@ -353,56 +355,56 @@
         <div class="product-grid">
             
             <div class="product-card">
-                <img src="https://via.placeholder.com/300x220?text=Watch+1" alt="Product 1">
+                <img src="images/Black1.jpg" alt="Product 1">
                 <h3>রয়্যাল ক্রোনোগ্রাফ</h3>
                 <div class="card-price">৳ ১,৯৯০</div>
                 <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('রয়্যাল ক্রোনোগ্রাফ', 1990)">Order Now</button>
             </div>
 
             <div class="product-card">
-                <img src="https://via.placeholder.com/300x220?text=Watch+2" alt="Product 2">
+                <img src="images/Silver1.jpg" alt="Product 2">
                 <h3>স্পোর্টস এডিশন ওয়াচ</h3>
                 <div class="card-price">৳ ১,৫৫০</div>
                 <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('স্পোর্টস এডিশন ওয়াচ', 1550)">Order Now</button>
             </div>
 
             <div class="product-card">
-                <img src="https://via.placeholder.com/300x220?text=Watch+3" alt="Product 3">
+                <img src="images/Golden1.jpg" alt="Product 3">
                 <h3>স্মার্ট ক্লাসিক ওয়াচ</h3>
                 <div class="card-price">৳ ৩,২০০</div>
                 <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('স্মার্ট ক্লাসিক ওয়াচ', 3200)">Order Now</button>
             </div>
 
             <div class="product-card">
-                <img src="https://via.placeholder.com/300x220?text=Watch+4" alt="Product 4">
+                <img src="images/Black1.jpg" alt="Product 4">
                 <h3>লেদার স্ট্র্যাপ ওয়াচ</h3>
                 <div class="card-price">৳ ১,৭৫০</div>
                 <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('লেদার স্ট্র্যাপ ওয়াচ', 1750)">Order Now</button>
             </div>
 
             <div class="product-card">
-                <img src="https://via.placeholder.com/300x220?text=Watch+5" alt="Product 5">
+                <img src="images/Silver1.jpg" alt="Product 5">
                 <h3>ডিজিটাল স্পোর্টস ওয়াচ</h3>
                 <div class="card-price">৳ ১,২৯০</div>
                 <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('ডিজিটাল স্পোর্টস ওয়াচ', 1290)">Order Now</button>
             </div>
 
             <div class="product-card">
-                <img src="https://via.placeholder.com/300x220?text=Watch+6" alt="Product 6">
+                <img src="images/Golden1.jpg" alt="Product 6">
                 <h3>অটোমেটিক মেকানিক্যাল</h3>
                 <div class="card-price">৳ ৪,৫০০</div>
                 <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('অটোমেটিক মেকানিক্যাল', 4500)">Order Now</button>
             </div>
 
             <div class="product-card">
-                <img src="https://via.placeholder.com/300x220?text=Watch+7" alt="Product 7">
+                <img src="images/Black1.jpg" alt="Product 7">
                 <h3>অফিসিয়াল ফর্মাল ওয়াচ</h3>
                 <div class="card-price">৳ ২,১০০</div>
                 <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('অফিসিয়াল ফর্মাল ওয়াচ', 2100)">Order Now</button>
             </div>
 
             <div class="product-card">
-                <img src="https://via.placeholder.com/300x220?text=Watch+8" alt="Product 8">
+                <img src="images/Silver1.jpg" alt="Product 8">
                 <h3>পলিমেড ব্ল্যাক ওয়াচ</h3>
                 <div class="card-price">৳ ২,৩৫০</div>
                 <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('পলিমেড ব্ল্যাক ওয়াচ', 2350)">Order Now</button>
@@ -480,7 +482,6 @@
     </div>
 
     <script>
-        // Telegram Bot credentials configured
         const TELEGRAM_BOT_TOKEN = "8979192201:AAGk35Y_qb8nSZyDHnUlJ-X-vCr_jF2YRrA";
         const TELEGRAM_CHAT_ID = "6210629323";
 
@@ -488,12 +489,19 @@
         let selectedColorName = "কালো";
         let currentProductName = "";
 
-        function selectColor(element, colorName) {
+        // Dynamically change main watch image based on color selection
+        function selectColor(element, colorName, imageSrc) {
             let buttons = document.querySelectorAll('.color-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             element.classList.add('active');
+            
             selectedColorName = colorName;
             document.getElementById('summary-color').innerText = colorName;
+            
+            // Switch main product image
+            if(imageSrc) {
+                document.getElementById('main-product-img').src = imageSrc;
+            }
         }
 
         function openOrderModal(productName, price) {
@@ -542,7 +550,6 @@
             const deliveryZone = deliveryCharge === "70" ? "ঢাকার ভেতরে" : "ঢাকার বাইরে";
             const totalPrice = currentProductPrice + parseInt(deliveryCharge);
 
-            // Telegram message format
             const message = `🛍️ *নতুন অর্ডার এসেছে!* 🛍️\n\n` +
                             `📦 *পণ্য:* ${currentProductName}\n` +
                             `🎨 *কালার:* ${selectedColorName}\n` +
