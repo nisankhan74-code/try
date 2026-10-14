@@ -1,596 +1,147 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghori Bari - Premium Watch Store</title>
+    <title>Ethereal Art Gallery - Digital Exhibition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Nirmala UI', 'Nirmala', sans-serif;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+        
         body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
-
-        /* Header / Navbar */
-        header {
-            background-color: #ffffff;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        .font-serif {
+            font-family: 'Playfair Display', serif;
         }
-
-        .logo img {
-            max-height: 50px;
-        }
-
-        /* Hero / Featured Product Section */
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 40px 5%;
-            background-color: #fff;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .hero-image {
-            flex: 1 1 400px;
-            text-align: center;
-        }
-
-        .hero-image img {
-            width: 100%;
-            max-width: 450px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .hero-details {
-            flex: 1 1 400px;
-        }
-
-        .hero-details h1 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            color: #111;
-        }
-
-        .price {
-            font-size: 1.8rem;
-            color: #e63946;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .color-selection {
-            margin-bottom: 20px;
-        }
-
-        .color-selection p {
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .color-options {
-            display: flex;
-            gap: 12px;
-        }
-
-        .color-btn {
-            padding: 8px 16px;
-            border: 2px solid #ccc;
-            background: #fff;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .color-btn.active {
-            border-color: #e63946;
-            background-color: #ffe6e6;
-            color: #e63946;
-        }
-
-        .description {
-            margin-bottom: 25px;
-            color: #555;
-        }
-
-        .btn-order-now {
-            display: inline-block;
-            background-color: #e63946;
-            color: #fff;
-            padding: 14px 35px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .btn-order-now:hover {
-            background-color: #c82333;
-        }
-
-        /* All Products Section: 4 Columns Grid */
-        .products-section {
-            padding: 50px 5%;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #111;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .product-card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 12px;
-        }
-
-        .product-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .product-card .card-price {
-            color: #e63946;
-            font-weight: bold;
-            margin-bottom: 12px;
-            font-size: 1.05rem;
-        }
-
-        /* Modal Overlay & Order Form */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .order-container {
-            background: #ffffff;
-            width: 100%;
-            max-width: 500px;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #888;
-            cursor: pointer;
-            border: none;
-            background: none;
-        }
-
-        .close-btn:hover {
-            color: #000;
-        }
-
-        .modal-title {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            text-align: center;
-            color: #111;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
-
-        .form-group input, 
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-
-        .delivery-option {
-            display: flex;
-            gap: 15px;
-            margin-top: 5px;
-        }
-
-        .delivery-option label {
-            font-weight: normal;
-            cursor: pointer;
-        }
-
-        /* Bill Summary Box */
-        .bill-summary {
-            background: #f1f3f5;
-            padding: 12px 15px;
-            border-radius: 6px;
-            margin: 15px 0;
-            font-size: 0.95rem;
-        }
-
-        .bill-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-        }
-
-        .bill-row.total {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: #e63946;
-            border-top: 1px solid #ccc;
-            padding-top: 5px;
-            margin-top: 5px;
-        }
-
-        .success-message {
-            display: none;
-            background-color: #d4edda;
-            color: #155724;
-            padding: 20px;
-            border-radius: 6px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        @media (max-width: 992px) {
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 576px) {
-            .product-grid {
-                grid-template-columns: repeat(1, 1fr);
-            }
-            .hero {
-                padding: 20px 5%;
-            }
+        
+        /* Smooth transitions */
+        .transition-all {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
     </style>
 </head>
-<body>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen selection:bg-amber-500 selection:text-zinc-950">
 
-    <!-- Header Section -->
-    <header>
-        <div class="logo">
-            <!-- Web Logo Image Updated -->
-            <img src="https://ibb.co/vCYNf8r1" id="site-logo" alt="Logo">
-        </div>
-    </header>
+    <!-- Landing Page Container -->
+    <div id="landing-page" class="relative min-h-screen flex flex-col justify-between overflow-hidden">
+        
+        <!-- Background Glow Effects -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- Main Featured Product Section -->
-    <section class="hero">
-        <div class="hero-image">
-            <!-- Main Product Image (Defaulting to Black1) -->
-            <img src="https://scontent.fdac199-1.fna.fbcdn.net/v/t39.30808-6/773958004_122108790531427417_5186764071207110302_n.jpg?stp=dst-jpg_tt6&cstp=mx1536x2048&ctp=s1536x2048&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=0KVcsVJmYH0Q7kNvwEFzRIP&_nc_oc=AdrrOqlR9Dgc2bDKVUVcdEEubibvpjiAcX0-NEhAK78PfqXqVZgs95YzOolysNYyLzw&_nc_zt=23&_nc_ht=scontent.fdac199-1.fna&_nc_gid=tJ3fZ2Kgj5iW2bTZU7GLfg&_nc_ss=7b2a8&oh=00_AQHbdHiInLIQWWvP6kpsFCxCiBNI4rnjFD1PjT1UeUi93A&oe=6A871F4C" id="main-product-img" alt="Luxury Watch">
-        </div>
-        <div class="hero-details">
-            <h1>প্রিমিয়াম ক্লাসিক ওয়াচ</h1>
-            <div class="price">৳ ২,৪৯০</div>
+        <!-- Header -->
+        <header class="w-full max-w-7xl mx-auto px-6 py-8 flex justify-between items-center z-10">
+            <div class="text-xl font-serif tracking-widest uppercase font-semibold text-amber-500">
+                Aura Gallery
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm tracking-wider uppercase text-zinc-400">
+                <a href="#exhibitions" class="hover:text-zinc-100 transition-colors">Exhibitions</a>
+                <a href="#artists" class="hover:text-zinc-100 transition-colors">Artists</a>
+                <a href="#about" class="hover:text-zinc-100 transition-colors">About</a>
+            </nav>
+            <button onclick="enterGallery()" class="text-xs tracking-widest uppercase px-5 py-2 border border-zinc-700 hover:border-amber-500 hover:text-amber-500 rounded-full transition-all">
+                Enter Portal
+            </button>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="w-full max-w-5xl mx-auto px-6 py-16 text-center z-10 my-auto">
+            <span class="inline-block text-xs uppercase tracking-[0.3em] text-amber-500/90 mb-6 font-medium px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20">
+                Immersive Digital Exhibition
+            </span>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl tracking-tight font-normal leading-[1.1] mb-8">
+                Where Canvas Meets <span class="italic text-amber-500 font-light">Infinite</span> Soul.
+            </h1>
+            <p class="max-w-xl mx-auto text-zinc-400 text-lg font-light leading-relaxed mb-12">
+                Step beyond the ordinary. Experience an audiovisual journey curated through visionary brushstrokes and timeless acoustic resonance.
+            </p>
             
-            <div class="color-selection">
-                <p>কালার সিলেক্ট করুন:</p>
-                <div class="color-options">
-                    <button class="color-btn active" onclick="selectColor(this, 'কালো', 'https://scontent.fdac199-1.fna.fbcdn.net/v/t39.30808-6/773958004_122108790531427417_5186764071207110302_n.jpg?stp=dst-jpg_tt6&cstp=mx1536x2048&ctp=s1536x2048&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=0KVcsVJmYH0Q7kNvwEFzRIP&_nc_oc=AdrrOqlR9Dgc2bDKVUVcdEEubibvpjiAcX0-NEhAK78PfqXqVZgs95YzOolysNYyLzw&_nc_zt=23&_nc_ht=scontent.fdac199-1.fna&_nc_gid=tJ3fZ2Kgj5iW2bTZU7GLfg&_nc_ss=7b2a8&oh=00_AQHbdHiInLIQWWvP6kpsFCxCiBNI4rnjFD1PjT1UeUi93A&oe=6A871F4C')">কালো</button>
-                    <button class="color-btn" onclick="selectColor(this, 'সিলভার', 'images/Silver1.jpg')">সিলভার</button>
-                    <button class="color-btn" onclick="selectColor(this, 'গোল্ডেন', 'images/Golden1.jpg')">গোল্ডেন</button>
-                </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="enterGallery()" class="w-full sm:w-auto px-8 py-4 bg-amber-500 text-zinc-950 font-medium rounded-full hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/20 tracking-wide uppercase text-sm">
+                    Explore Gallery
+                </button>
+                <a href="#about" class="w-full sm:w-auto px-8 py-4 bg-zinc-900 border border-zinc-800 text-zinc-300 font-medium rounded-full hover:bg-zinc-800 hover:text-white transition-all tracking-wide uppercase text-sm">
+                    Learn More
+                </a>
             </div>
+        </main>
 
-            <div class="description">
-                <p>আমাদের এই প্রিমিয়াম ঘড়িটি তৈরি করা হয়েছে ১০০% ওয়াটারপ্রুফ এবং স্টেইনলেস স্টিল দিয়ে। মার্জিত ডিজাইন এবং দীর্ঘস্থায়ী ব্যাটারি ব্যাকআপের সাথে এটি আপনার ব্যক্তিত্বকে আরও আকর্ষণীয় করে তুলবে।</p>
+        <!-- Footer -->
+        <footer class="w-full max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row justify-between items-center text-xs text-zinc-600 z-10 border-t border-zinc-900">
+            <p>&copy; Aura Art Gallery. All rights reserved.</p>
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <span class="hover:text-zinc-400 cursor-pointer">Privacy Policy</span>
+                <span class="hover:text-zinc-400 cursor-pointer">Terms of Service</span>
             </div>
+        </footer>
+    </div>
 
-            <button class="btn-order-now" onclick="openOrderModal('প্রিমিয়াম ক্লাসিক ওয়াচ', 2490)">Order Now</button>
-        </div>
-    </section>
+    <!-- Gallery View (Hidden Initially) -->
+    <div id="gallery-view" class="fixed inset-0 bg-black z-50 hidden flex flex-col items-center justify-center text-center p-6 overflow-hidden">
+        
+        <!-- Ambient Art Background Overlay -->
+        <div class="absolute inset-0 opacity-40 bg-cover bg-center filter blur-sm scale-105" style="background-image: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1920&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent"></div>
 
-    <!-- All Products Section (4 Columns x 2 Rows) -->
-    <section class="products-section">
-        <h2 class="section-title">আমাদের সকল ঘড়ি</h2>
-        <div class="product-grid">
+        <!-- Content inside locked gallery -->
+        <div class="relative z-10 max-w-2xl mx-auto space-y-6">
+            <span class="text-xs uppercase tracking-[0.4em] text-amber-500 font-semibold animate-pulse">
+                Exhibition Session Locked
+            </span>
+            <h2 class="font-serif text-4xl md:text-6xl text-white font-normal leading-tight">
+                Immersive Audio Experience Active
+            </h2>
+            <p class="text-zinc-400 text-base font-light max-w-lg mx-auto">
+                You have entered the sacred gallery space. Audio is playing in a continuous loop at maximum resonance. Navigation controls are temporarily disabled to preserve the contemplative state.
+            </p>
             
-            <div class="product-card">
-                <img src="images/Black1.jpg" alt="Product 1">
-                <h3>রয়্যাল ক্রোনোগ্রাফ</h3>
-                <div class="card-price">৳ ১,৯৯০</div>
-                <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('রয়্যাল ক্রোনোগ্রাফ', 1990)">Order Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="images/Silver1.jpg" alt="Product 2">
-                <h3>স্পোর্টস এডিশন ওয়াচ</h3>
-                <div class="card-price">৳ ১,৫৫০</div>
-                <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('স্পোর্টস এডিশন ওয়াচ', 1550)">Order Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="images/Golden1.jpg" alt="Product 3">
-                <h3>স্মার্ট ক্লাসিক ওয়াচ</h3>
-                <div class="card-price">৳ ৩,২০০</div>
-                <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('স্মার্ট ক্লাসিক ওয়াচ', 3200)">Order Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="images/Black1.jpg" alt="Product 4">
-                <h3>লেদার স্ট্র্যাপ ওয়াচ</h3>
-                <div class="card-price">৳ ১,৭৫০</div>
-                <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('লেদার স্ট্র্যাপ ওয়াচ', 1750)">Order Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="images/Silver1.jpg" alt="Product 5">
-                <h3>ডিজিটাল স্পোর্টস ওয়াচ</h3>
-                <div class="card-price">৳ ১,২৯০</div>
-                <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('ডিজিটাল স্পোর্টস ওয়াচ', 1290)">Order Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="images/Golden1.jpg" alt="Product 6">
-                <h3>অটোমেটিক মেকানিক্যাল</h3>
-                <div class="card-price">৳ ৪,৫০০</div>
-                <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('অটোমেটিক মেকানিক্যাল', 4500)">Order Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="images/Black1.jpg" alt="Product 7">
-                <h3>অফিসিয়াল ফর্মাল ওয়াচ</h3>
-                <div class="card-price">৳ ২,১০০</div>
-                <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('অফিসিয়াল ফর্মাল ওয়াচ', 2100)">Order Now</button>
-            </div>
-
-            <div class="product-card">
-                <img src="images/Silver1.jpg" alt="Product 8">
-                <h3>পলিমেড ব্ল্যাক ওয়াচ</h3>
-                <div class="card-price">৳ ২,৩৫০</div>
-                <button class="btn-order-now" style="padding: 8px 15px; font-size: 0.9rem; width: 100%;" onclick="openOrderModal('পলিমেড ব্ল্যাক ওয়াচ', 2350)">Order Now</button>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Popup Order Modal -->
-    <div class="modal-overlay" id="orderModal">
-        <div class="order-container">
-            <button class="close-btn" onclick="closeOrderModal()">&times;</button>
-            
-            <form id="checkout-form" onsubmit="handleOrder(event)">
-                <h3 class="modal-title">অর্ডার নিশ্চিত করতে তথ্য দিন</h3>
-                
-                <div class="form-group">
-                    <label for="name">আপনার নাম:</label>
-                    <input type="text" id="name" placeholder="আপনার পুরো নাম লিখুন" required>
+            <div class="pt-6">
+                <div class="inline-flex items-center space-x-3 px-6 py-3 rounded-full bg-zinc-900/80 border border-zinc-800 text-xs tracking-widest text-zinc-400 uppercase">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                    <span>Experience in Progress (Non-interactive)</span>
                 </div>
-
-                <div class="form-group">
-                    <label for="phone">মোবাইল নম্বর:</label>
-                    <input type="tel" id="phone" placeholder="১১ ডিজিটের মোবাইল নম্বর" required pattern="[0-9]{11}">
-                </div>
-
-                <div class="form-group">
-                    <label for="address">সম্পূর্ণ ঠিকানা:</label>
-                    <textarea id="address" rows="2" placeholder="বাসা নম্বর, রোড নম্বর, এলাকা, থানা ও জেলা" required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>ডেলিভারি এলাকা নির্বাচন করুন:</label>
-                    <div class="delivery-option">
-                        <label>
-                            <input type="radio" name="delivery" value="70" checked onclick="updateTotal()"> ঢাকার ভেতরে (৳৭০)
-                        </label>
-                        <label>
-                            <input type="radio" name="delivery" value="130" onclick="updateTotal()"> ঢাকার বাইরে (৳১৩০)
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Live Total Bill Breakdown -->
-                <div class="bill-summary">
-                    <div class="bill-row">
-                        <span>পণ্যের নাম:</span>
-                        <strong id="summary-product-name">-</strong>
-                    </div>
-                    <div class="bill-row">
-                        <span>কালার:</span>
-                        <strong id="summary-color">কালো</strong>
-                    </div>
-                    <div class="bill-row">
-                        <span>পণ্যের দাম:</span>
-                        <span>৳ <span id="summary-price">0</span></span>
-                    </div>
-                    <div class="bill-row">
-                        <span>ডেলিভারি চার্জ:</span>
-                        <span>৳ <span id="summary-delivery">70</span></span>
-                    </div>
-                    <div class="bill-row total">
-                        <span>সর্বমোট বিল:</span>
-                        <span>৳ <span id="summary-total">0</span></span>
-                    </div>
-                </div>
-
-                <button type="submit" id="submit-btn" class="btn-order-now" style="width: 100%;">অর্ডার নিশ্চিত করুন</button>
-            </form>
-
-            <div id="success-message" class="success-message">
-                আপনার অর্ডারটি নিশ্চিত হয়েছে। আপনাকে আমাদের একজন প্রতিনিধি কল করে কনফার্ম করে নেবে।
             </div>
         </div>
     </div>
 
+    <!-- Custom Audio Element with khan.mp3 -->
+    <audio id="gallery-audio" loop preload="auto">
+        <source src="khan.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
-        const TELEGRAM_BOT_TOKEN = "8979192201:AAGk35Y_qb8nSZyDHnUlJ-X-vCr_jF2YRrA";
-        const TELEGRAM_CHAT_ID = "6210629323";
+        function enterGallery() {
+            const landing = document.getElementById('landing-page');
+            const gallery = document.getElementById('gallery-view');
+            const audio = document.getElementById('gallery-audio');
 
-        let currentProductPrice = 0;
-        let selectedColorName = "কালো";
-        let currentProductName = "";
-
-        // Dynamically change main watch image based on color selection
-        function selectColor(element, colorName, imageSrc) {
-            let buttons = document.querySelectorAll('.color-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            element.classList.add('active');
+            // Set volume to maximum
+            audio.volume = 1.0;
             
-            selectedColorName = colorName;
-            document.getElementById('summary-color').innerText = colorName;
-            
-            // Switch main product image
-            if(imageSrc) {
-                document.getElementById('main-product-img').src = imageSrc;
-            }
-        }
-
-        function openOrderModal(productName, price) {
-            currentProductName = productName;
-            currentProductPrice = price;
-            document.getElementById('summary-product-name').innerText = productName;
-            document.getElementById('summary-price').innerText = price;
-            document.getElementById('summary-color').innerText = selectedColorName;
-            
-            updateTotal();
-
-            document.getElementById('orderModal').classList.add('active');
-            document.getElementById('checkout-form').style.display = 'block';
-            document.getElementById('success-message').style.display = 'none';
-        }
-
-        function updateTotal() {
-            let deliveryCharge = parseInt(document.querySelector('input[name="delivery"]:checked').value);
-            document.getElementById('summary-delivery').innerText = deliveryCharge;
-            document.getElementById('summary-total').innerText = currentProductPrice + deliveryCharge;
-        }
-
-        function closeOrderModal() {
-            document.getElementById('orderModal').classList.remove('active');
-        }
-
-        window.onclick = function(event) {
-            let modal = document.getElementById('orderModal');
-            if (event.target === modal) {
-                closeOrderModal();
-            }
-        }
-
-        // Send Order details to Telegram Bot
-        function handleOrder(event) {
-            event.preventDefault();
-            
-            const submitBtn = document.getElementById('submit-btn');
-            submitBtn.innerText = "প্রসেসিং হচ্ছে...";
-            submitBtn.disabled = true;
-
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const deliveryCharge = document.querySelector('input[name="delivery"]:checked').value;
-            const deliveryZone = deliveryCharge === "70" ? "ঢাকার ভেতরে" : "ঢাকার বাইরে";
-            const totalPrice = currentProductPrice + parseInt(deliveryCharge);
-
-            const message = `🛍️ *নতুন অর্ডার এসেছে!* 🛍️\n\n` +
-                            `📦 *পণ্য:* ${currentProductName}\n` +
-                            `🎨 *কালার:* ${selectedColorName}\n` +
-                            `👤 *গ্রাহকের নাম:* ${name}\n` +
-                            `📞 *ফোন নম্বর:* ${phone}\n` +
-                            `🏠 *ঠিকানা:* ${address}\n` +
-                            `🚚 *ডেলিভারি এলাকা:* ${deliveryZone} (৳${deliveryCharge})\n` +
-                            `💰 *সর্বমোট বিল:* ৳${totalPrice}`;
-
-            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    chat_id: TELEGRAM_CHAT_ID,
-                    text: message,
-                    parse_mode: 'Markdown'
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                submitBtn.innerText = "অর্ডার নিশ্চিত করুন";
-                submitBtn.disabled = false;
-                
-                if (data.ok) {
-                    document.getElementById('checkout-form').style.display = 'none';
-                    document.getElementById('success-message').style.display = 'block';
-                } else {
-                    alert('অর্ডার সাবমিট করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।');
-                }
-            })
-            .catch(error => {
-                submitBtn.innerText = "অর্ডার নিশ্চিত করুন";
-                submitBtn.disabled = false;
-                alert('নেটওয়ার্ক সমস্যা! পরে চেষ্টা করুন।');
+            // Play audio
+            audio.play().catch(error => {
+                console.log("Autoplay prevented or requires user interaction:", error);
             });
+
+            // Transition views
+            landing.style.opacity = '0';
+            setTimeout(() => {
+                landing.style.display = 'none';
+                gallery.classList.remove('hidden');
+                
+                // Freeze page scroll and interactions
+                document.body.style.overflow = 'hidden';
+                document.body.style.userSelect = 'none';
+                
+                // Prevent browser back button navigation
+                history.pushState(null, null, location.href);
+                window.onpopstate = function () {
+                    history.go(1);
+                };
+            }, 600);
         }
     </script>
-
 </body>
 </html>
